@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --red: #a8231b;
+  --red-deep: #7e150f;
+  --red-dark: #5c0e09;
+  --paper: #fbf3e4;
+  --paper-line: #e8d9bc;
+  --ink: #2b1d14;
+  --ink-soft: #6b5847;
+  --green: #1e7a46;
+  --green-soft: #e3f2e9;
+  --gold: #e8b544;
+  --white: #fffdf8;
+  --shadow: 0 10px 40px rgba(92, 14, 9, 0.18);
+  --radius: 14px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--red-deep);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer utilities {
+  /* Ruled ledger paper — used by the hero passbook and the chat transcript */
+  .ledger-lines {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 35px,
+      var(--paper-line) 35px,
+      var(--paper-line) 36px
+    );
+  }
+  .ledger-lines-soft {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--paper),
+      var(--paper) 35px,
+      rgba(232, 217, 188, 0.5) 35px,
+      rgba(232, 217, 188, 0.5) 36px
+    );
+  }
+}
