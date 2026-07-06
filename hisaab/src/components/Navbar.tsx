@@ -34,27 +34,29 @@ export default function Navbar() {
           </span>
         </a>
 
-        <ul className="hidden items-center gap-[26px] md:flex">
-          {nav.links.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-[15px] font-medium text-paper opacity-85 transition-opacity duration-200 hover:opacity-100"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center gap-[26px]">
+          <ul className="hidden items-center gap-[26px] md:flex">
+            {nav.links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="text-[15px] font-medium text-paper opacity-85 transition-opacity duration-200 hover:opacity-100"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
 
-        <motion.a
-          href={nav.cta.href}
-          whileHover={{ y: -2, boxShadow: "0 6px 18px rgba(0,0,0,.25)" }}
-          whileTap={{ scale: 0.97 }}
-          className="inline-block rounded-full bg-gold px-6 py-[11px] text-[15.5px] font-bold text-ink no-underline"
-        >
-          {nav.cta.label}
-        </motion.a>
+          <motion.a
+            href={nav.cta.href}
+            whileHover={{ y: -2, boxShadow: "0 6px 18px rgba(0,0,0,.25)" }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-block rounded-full bg-gold px-6 py-[11px] text-[15.5px] font-bold text-ink no-underline"
+          >
+            {nav.cta.label}
+          </motion.a>
+        </div>
       </div>
     </nav>
   );

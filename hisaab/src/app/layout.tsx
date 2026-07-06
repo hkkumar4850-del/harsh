@@ -3,15 +3,19 @@ import { Yatra_One, Mukta, IBM_Plex_Mono } from "next/font/google";
 import MotionProvider from "@/components/MotionProvider";
 import "./globals.css";
 
+// Preload latin only: the copy is Hinglish in latin script, and preloading
+// every devanagari weight (~380 KB) pushes the font swap — and LCP — past 4 s
+// on throttled mobile. Devanagari faces stay in the CSS via unicode-range and
+// load on demand for the few glyphs that need them (हिंदी pill, १२३ numerals).
 const yatra = Yatra_One({
-  subsets: ["latin", "devanagari"],
+  subsets: ["latin"],
   weight: "400",
   variable: "--font-yatra",
   display: "swap",
 });
 
 const mukta = Mukta({
-  subsets: ["latin", "devanagari"],
+  subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-mukta",
   display: "swap",

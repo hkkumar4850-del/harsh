@@ -71,37 +71,37 @@ export const features = {
       icon: "📒",
       title: "Auto Kharcha Tracking",
       desc: "Bank SMS padh kar har transaction apne aap categorize ho jaata hai. Manual entry ki zaroorat nahi.",
-      chip: "“Is mahine Swiggy pe ₹8,400 😬”",
+      chip: "\"Is mahine Swiggy pe ₹8,400 😬\"",
     },
     {
       icon: "🗣️",
       title: "AI Coach — Aapki Bhasha Mein",
       desc: "Hindi, Tamil, Telugu, Marathi... jaise dost se baat karte ho, waise hi paise ki baat karo.",
-      chip: "“Mera paisa kahan ja raha hai?”",
+      chip: "\"Mera paisa kahan ja raha hai?\"",
     },
     {
       icon: "🎯",
       title: "Goal-based SIP Planner",
       desc: "Ghar, gaadi, shaadi, retirement — goal batao, app exact monthly SIP calculate karega.",
-      chip: "“₹20 lakh, 5 saal — ₹24,800/month SIP”",
+      chip: "\"₹20 lakh, 5 saal — ₹24,800/month SIP\"",
     },
     {
       icon: "🧾",
       title: "Tax Bachao Planner",
       desc: "80C, HRA, NPS — October mein hi bata dega kitna invest karna hai. March panic khatam.",
-      chip: "“₹1.05L aur invest karo, ₹32K tax bachao”",
+      chip: "\"₹1.05L aur invest karo, ₹32K tax bachao\"",
     },
     {
       icon: "🛡️",
       title: "Emergency Fund Guard",
       desc: "6 mahine ka kharcha cover hai ya nahi? App track karta hai aur step-by-step banwata hai.",
-      chip: "“Abhi sirf 1.8 mahine ka backup hai”",
+      chip: "\"Abhi sirf 1.8 mahine ka backup hai\"",
     },
     {
       icon: "💳",
       title: "EMI & Karza Manager",
       desc: "Saare loans ek jagah. Kaunsa pehle chukao taaki maximum interest bache — app batayega.",
-      chip: "“Credit card pehle — 36% interest!”",
+      chip: "\"Credit card pehle — 36% interest!\"",
     },
   ],
 };
@@ -260,7 +260,7 @@ export const faq = {
     },
     {
       q: "Subscription cancel kaise karein?",
-      a: "App ke settings mein ek button hai — “Cancel karo”. Bas. Koi call nahi, koi email nahi, koi “are you sure” ka jaal nahi.",
+      a: "App ke settings mein ek button hai — \"Cancel karo\". Bas. Koi call nahi, koi email nahi, koi \"are you sure\" ka jaal nahi.",
     },
   ],
 };
