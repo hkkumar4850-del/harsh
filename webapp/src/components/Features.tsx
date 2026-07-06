@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { HomeIcon, RingsIcon, TempleIcon } from "./icons";
 
@@ -12,6 +13,16 @@ const card: Variants = {
     y: 0,
     transition: { duration: 0.6, delay: i * 0.12, ease: EASE },
   }),
+};
+
+const bar: Variants = {
+  rest: { scaleX: 0 },
+  hover: { scaleX: 1, transition: { duration: 0.5, ease: EASE } },
+};
+
+const iconWrap: Variants = {
+  rest: { rotate: 0, backgroundColor: "#fbeedd", color: "#7a1330" },
+  hover: { rotate: -6, backgroundColor: "#7a1330", color: "#e8c873", transition: { duration: 0.3, ease: EASE } },
 };
 
 const features = [
@@ -31,6 +42,43 @@ const features = [
     desc: "End-to-end wedding planning and decor — mandap to reception — plus same-day flower delivery, all managed by one dedicated team.",
   },
 ];
+
+function FeatureCard({ f, i }: { f: (typeof features)[number]; i: number }) {
+  const [hovered, setHovered] = useState(false);
+  const state = hovered ? "hover" : "rest";
+
+  return (
+    <motion.article
+      custom={i}
+      variants={card}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      whileHover={{ y: -8, boxShadow: "0 20px 50px -15px rgba(122, 19, 48, 0.35)" }}
+      transition={{ type: "spring", stiffness: 300, damping: 24 }}
+      className="relative overflow-hidden rounded-2xl border border-cream-alt bg-white p-9 shadow-soft"
+    >
+      <motion.span
+        variants={bar}
+        animate={state}
+        initial="rest"
+        className="absolute inset-x-0 top-0 h-1 origin-left bg-gradient-to-r from-gold to-primary"
+      />
+      <motion.span
+        variants={iconWrap}
+        animate={state}
+        initial="rest"
+        className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl"
+      >
+        <f.icon className="h-7 w-7" />
+      </motion.span>
+      <h3 className="mb-2.5 font-heading text-xl font-bold text-primary-dark">{f.title}</h3>
+      <p className="text-sm text-ink-muted">{f.desc}</p>
+    </motion.article>
+  );
+}
 
 export default function Features() {
   return (
@@ -57,25 +105,7 @@ export default function Features() {
 
         <div className="grid gap-8 md:grid-cols-3">
           {features.map((f, i) => (
-            <motion.article
-              key={f.title}
-              custom={i}
-              variants={card}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.3 }}
-              whileHover={{ y: -8 }}
-              className="group relative overflow-hidden rounded-2xl border border-cream-alt bg-white p-9 shadow-soft transition-shadow hover:shadow-strong"
-            >
-              <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-gold to-primary transition-transform duration-500 group-hover:scale-x-100" />
-              <span className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-cream-alt text-primary transition-all duration-300 group-hover:-rotate-6 group-hover:bg-primary group-hover:text-gold-light">
-                <f.icon className="h-7 w-7" />
-              </span>
-              <h3 className="mb-2.5 font-heading text-xl font-bold text-primary-dark">
-                {f.title}
-              </h3>
-              <p className="text-sm text-ink-muted">{f.desc}</p>
-            </motion.article>
+            <FeatureCard key={f.title} f={f} i={i} />
           ))}
         </div>
       </div>

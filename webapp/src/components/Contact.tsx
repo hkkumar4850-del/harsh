@@ -62,8 +62,9 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
-            whileHover={{ y: -6 }}
-            className="flex flex-col items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-6 text-left backdrop-blur-sm transition-colors hover:bg-white/15"
+            whileHover={{ y: -6, backgroundColor: "rgba(255,255,255,0.15)" }}
+            whileTap={{ scale: 0.97 }}
+            className="flex flex-col items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-6 text-left backdrop-blur-sm"
           >
             <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 text-gold-light">
               <it.icon className="h-5 w-5" />

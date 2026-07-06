@@ -88,20 +88,26 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={item} className="mt-9 flex flex-wrap justify-center gap-4">
-          <a
+          <motion.a
             href={`tel:+${site.phoneE164}`}
-            className="inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-soft transition-transform hover:-translate-y-1 hover:shadow-strong"
+            whileHover={{ y: -4, boxShadow: "0 20px 50px -15px rgba(122, 19, 48, 0.35)" }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            className="inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-soft"
           >
             <PhoneIcon className="h-[18px] w-[18px]" /> Call {site.owner}
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href={whatsappUrl("Jai Shree Shyam! I'd like to enquire about flower decor.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+            whileHover={{ backgroundColor: "rgba(255,255,255,0.15)" }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ duration: 0.25 }}
+            className="inline-flex items-center gap-2.5 rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white"
           >
             <WhatsAppIcon className="h-[18px] w-[18px]" /> WhatsApp Us
-          </a>
+          </motion.a>
         </motion.div>
 
         <motion.p variants={item} className="mt-8 inline-flex items-center gap-1.5 text-sm text-white/70">

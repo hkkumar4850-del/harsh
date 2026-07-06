@@ -94,14 +94,17 @@ export default function SocialProof() {
               <StarIcon key={i} className="h-5 w-5" />
             ))}
           </div>
-          <a
+          <motion.a
             href={site.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-5 py-2 text-sm font-semibold text-primary shadow-soft transition-transform hover:-translate-y-0.5"
+            whileHover={{ y: -3, boxShadow: "0 20px 50px -15px rgba(122, 19, 48, 0.35)" }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-5 py-2 text-sm font-semibold text-primary shadow-soft"
           >
             <InstaIcon className="h-4 w-4" /> Follow {site.instagramHandle} on Instagram
-          </a>
+          </motion.a>
         </motion.div>
       </div>
     </section>

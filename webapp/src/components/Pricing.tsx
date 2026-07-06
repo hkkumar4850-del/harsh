@@ -85,8 +85,9 @@ export default function Pricing() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.3 }}
-              whileHover={{ y: -8 }}
-              className={`flex flex-col rounded-2xl border p-9 shadow-soft transition-shadow hover:shadow-strong ${
+              whileHover={{ y: -8, boxShadow: "0 20px 50px -15px rgba(122, 19, 48, 0.35)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 24 }}
+              className={`flex flex-col rounded-2xl border p-9 shadow-soft ${
                 t.featured
                   ? "border-gold bg-primary text-white"
                   : "border-cream-alt bg-cream/40 text-ink"
@@ -115,18 +116,21 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a
+              <motion.a
                 href={whatsappUrl(`Jai Shree Shyam! I'd like a custom quote for the ${t.name} package.`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold shadow-soft transition-transform hover:-translate-y-0.5 ${
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold shadow-soft ${
                   t.featured
                     ? "bg-gradient-to-br from-gold-light to-gold-dark text-primary-dark"
                     : "bg-primary text-white"
                 }`}
               >
                 Get Custom Quote
-              </a>
+              </motion.a>
             </motion.div>
           ))}
         </div>

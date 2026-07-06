@@ -45,24 +45,39 @@ export default function Navbar() {
 
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <a
+            <motion.a
               key={link.href}
               href={link.href}
-              className="relative text-sm font-medium text-white/85 transition-colors hover:text-gold-light after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-gold-light after:transition-all after:duration-300 hover:after:w-full"
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
+              className="relative text-sm font-medium text-white/85"
             >
-              {link.label}
-            </a>
+              <motion.span
+                variants={{ rest: { color: "rgba(255,255,255,0.85)" }, hover: { color: "#e8c873" } }}
+                transition={{ duration: 0.25 }}
+              >
+                {link.label}
+              </motion.span>
+              <motion.span
+                variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute -bottom-1 left-0 h-0.5 w-full origin-left bg-gold-light"
+              />
+            </motion.a>
           ))}
         </nav>
 
-        <a
+        <motion.a
           href={whatsappUrl("Jai Shree Shyam! I'd like to enquire about flower decor.")}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden rounded-full bg-gradient-to-br from-gold-light to-gold-dark px-6 py-2.5 text-sm font-semibold text-primary-dark shadow-soft transition-transform hover:-translate-y-0.5 md:inline-flex"
+          whileHover={{ y: -2, boxShadow: "0 10px 30px -12px rgba(201, 151, 42, 0.55)" }}
+          whileTap={{ scale: 0.96 }}
+          className="hidden rounded-full bg-gradient-to-br from-gold-light to-gold-dark px-6 py-2.5 text-sm font-semibold text-primary-dark shadow-soft md:inline-flex"
         >
           Book Now
-        </a>
+        </motion.a>
 
         <button
           aria-label="Toggle menu"
@@ -95,14 +110,17 @@ export default function Navbar() {
             className="fixed inset-y-0 right-0 flex w-[min(320px,80vw)] flex-col justify-center gap-7 bg-primary-dark px-10 shadow-strong md:hidden"
           >
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-lg font-medium text-white/90 hover:text-gold-light"
+                whileHover={{ x: 6, color: "#e8c873" }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ duration: 0.25 }}
+                className="text-lg font-medium text-white/90"
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
           </motion.nav>
         )}
