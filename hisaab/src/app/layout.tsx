@@ -14,18 +14,23 @@ const yatra = Yatra_One({
   display: "swap",
 });
 
+// display:"optional" on the body/mono faces: they're preloaded so fast
+// connections still get them, but a slow connection keeps the metric-adjusted
+// fallback instead of swapping seconds in — a late swap re-emits the hero
+// subhead as a new (worse) LCP entry. Yatra One keeps "swap": the display
+// face is the brand and must arrive even if late.
 const mukta = Mukta({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-mukta",
-  display: "swap",
+  display: "optional",
 });
 
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-plex-mono",
-  display: "swap",
+  display: "optional",
 });
 
 export const metadata: Metadata = {

@@ -49,14 +49,14 @@ export default function Hero() {
             {hero.h1Line2}
           </motion.h1>
 
-          <motion.p
-            variants={heroChild}
-            className="mb-8 max-w-[480px] text-[19px] font-light opacity-90"
-          >
+          {/* The subhead is the page's LCP element — it must stay static.
+              Any motion on it (even transform-only) re-emits the LCP entry
+              at hydration time and tanks the score by ~3 s. */}
+          <p className="mb-8 max-w-[480px] text-[19px] font-light opacity-90">
             {hero.subPre}
             <strong className="font-semibold">{hero.subStrong}</strong>
             {hero.subPost}
-          </motion.p>
+          </p>
 
           <motion.div
             variants={heroChild}
