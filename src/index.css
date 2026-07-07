@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Brand tokens — swap these to re-theme the whole page               */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-brand: #e3603d;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #0c0c0c;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-brand) 30%, transparent);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Liquid-glass card: near-transparent blurred panel with an inset    */
+/*  highlight and a 1px gradient border ring (brighter top/bottom)     */
+/*  drawn by a masked ::before pseudo-element.                         */
+/* ------------------------------------------------------------------ */
+.liquid-glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+    0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Dark-based variant for white-copy cards that must stay legible over
+   the cream "Bone" look (spec sheet, testimonials). */
+.liquid-glass-dark {
+  background: rgba(10, 10, 13, 0.58);
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.07) 28%,
+    rgba(255, 255, 255, 0.07) 72%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Shiny animated gradient headline word ("Reimagined")               */
+/*  Horizontal gradient sweep clipped to the glyphs, grit added by     */
+/*  the root-level #frame-noise SVG filter.                            */
+/* ------------------------------------------------------------------ */
+.shiny-text {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand) 0%,
+    #f6c39f 30%,
+    #ffffff 50%,
+    #f6c39f 70%,
+    var(--color-brand) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: frame-shine 5s linear infinite;
+  filter: url(#frame-noise);
+}
+
+@keyframes frame-shine {
+  to {
+    background-position: -200% center;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Giant watermark typography behind the Collections cards.           */
+/*  Mobile fallback: smaller type, no noise filter (cheap to paint).   */
+/* ------------------------------------------------------------------ */
+.watermark-word {
+  font-size: clamp(4.5rem, 19vw, 17rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.04);
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .watermark-word {
+    filter: url(#frame-noise);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiny-text {
+    animation: none;
+  }
+}
