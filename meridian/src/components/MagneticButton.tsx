@@ -52,7 +52,7 @@ export default function MagneticButton({
 
   return (
     <motion.button
-      ref={ref as React.RefObject<HTMLButtonElement>}
+      ref={ref}
       type={type}
       data-cursor="link"
       onClick={onClick}

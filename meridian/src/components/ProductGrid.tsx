@@ -13,23 +13,16 @@ const cardVariants: Variants = {
   },
 };
 
-const sweepVariants: Variants = {
-  hidden: { x: "-150%", rotate: -12 },
-  show: { x: "-150%", rotate: -12 },
-  hover: { x: "150%", rotate: -12, transition: { duration: 0.85, ease: EASE } },
-};
-
-const promptVariants: Variants = {
-  hidden: { opacity: 1 },
-  show: { opacity: 1 },
-  hover: { opacity: 0, transition: { duration: 0.2, ease: EASE } },
-};
-
-const priceVariants: Variants = {
-  hidden: { opacity: 0, y: 6 },
-  show: { opacity: 0, y: 6 },
-  hover: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE, delay: 0.05 } },
-};
+/*
+ * The shine sweep and price-reveal are driven by plain CSS `group-hover`,
+ * not Framer variants: when a propagated variant's "hidden" and "show"
+ * states are identical (as these were, since both rest states are meant
+ * to look the same until a real "hover" state differs them), Framer never
+ * mounts an inline style for that value at all — it reads the animation
+ * as a no-op — so the element sits at its untransformed CSS default
+ * forever, only fixed once "hover" itself becomes active. CSS side-steps
+ * that entirely since there's no propagated variant tree involved.
+ */
 
 export default function ProductGrid() {
   return (
@@ -78,9 +71,9 @@ function ProductCard({ piece }: { piece: CollectionPiece }) {
     >
       <div className="relative -mt-2 flex items-center justify-center overflow-hidden rounded-md">
         <WatchFace dial={piece.dial} strap={piece.strap} size={200} sweepSeconds={false} />
-        <motion.div
-          variants={sweepVariants}
-          className="pointer-events-none absolute -inset-y-6 left-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -inset-y-6 left-0 w-1/3 -translate-x-[150%] -rotate-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[400%]"
         />
       </div>
 
@@ -94,18 +87,12 @@ function ProductCard({ piece }: { piece: CollectionPiece }) {
       <div className="hairline mt-6 h-px w-full" />
 
       <div className="relative mt-4 h-5">
-        <motion.span
-          variants={promptVariants}
-          className="eyebrow absolute inset-0 text-bone-faint"
-        >
+        <span className="eyebrow absolute inset-0 text-bone-faint opacity-100 transition-opacity duration-200 ease-out group-hover:opacity-0">
           View Price
-        </motion.span>
-        <motion.span
-          variants={priceVariants}
-          className="absolute inset-0 font-mono text-sm text-brass-bright tabular"
-        >
+        </span>
+        <span className="absolute inset-0 translate-y-1.5 font-mono text-sm text-brass-bright tabular opacity-0 transition-[opacity,transform] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-hover:opacity-100">
           {piece.price}
-        </motion.span>
+        </span>
       </div>
     </motion.a>
   );

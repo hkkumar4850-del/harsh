@@ -65,11 +65,22 @@ function CollectionScene({
   const end = (index + 1) / TOTAL;
   const mid = (start + end) / 2;
   const fade = (end - start) * 0.18;
+  const isFirst = index === 0;
+  const isLast = index === TOTAL - 1;
 
+  // The first scene is already what's on screen the instant the section
+  // pins (scrollYProgress lands exactly on `start`), so it must not fade
+  // in from 0 there — only fade out as the next scene approaches. Same
+  // logic in reverse for the last scene: it should never fade back out
+  // once reached, since there's nothing after it to crossfade to.
   const opacity = useTransform(
     scrollYProgress,
-    [start, start + fade, end - fade, end],
-    [0, 1, 1, 0],
+    isFirst
+      ? [start, end - fade, end]
+      : isLast
+        ? [start, start + fade, end]
+        : [start, start + fade, end - fade, end],
+    isFirst ? [1, 1, 0] : isLast ? [0, 1, 1] : [0, 1, 1, 0],
   );
   const scale = useTransform(scrollYProgress, [start, mid, end], [0.86, 1, 1.1]);
   const rotate = useTransform(scrollYProgress, [start, mid, end], [-3, 0, 3]);

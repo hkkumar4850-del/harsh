@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { Instagram, Rss, MessageCircle } from "lucide-react";
+import { Camera, Rss, MessageCircle } from "lucide-react";
 import { brand, footer } from "@/lib/content";
 import { fadeUp, viewportOnce } from "@/lib/motion";
 
-const socialIcons: Record<string, typeof Instagram> = {
-  Instagram: Instagram,
+const socialIcons: Record<string, typeof Camera> = {
+  Instagram: Camera,
   Journal: Rss,
   "WhatsApp Concierge": MessageCircle,
 };
