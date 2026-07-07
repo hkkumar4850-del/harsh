@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@import "@fontsource/fraunces/300.css";
+@import "@fontsource/fraunces/300-italic.css";
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/archivo/400.css";
+@import "@fontsource/archivo/500.css";
+@import "@fontsource/archivo/600.css";
+@import "@fontsource/archivo/700.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+/*
+  Palette: a cool near-black (not warm brown-black) so the brushed-steel
+  photography reads true, with brass — not the amber/gold every "luxury"
+  template reaches for — as the single metallic accent. Text is bone, never
+  pure white, so long-form copy on black doesn't vibrate.
+*/
+@theme {
+  --color-ink: #0a0a0c;
+  --color-ink-soft: #131316;
+  --color-ink-raised: #1c1c20;
+  --color-line: rgba(237, 232, 221, 0.12);
+  --color-line-strong: rgba(237, 232, 221, 0.24);
+
+  --color-bone: #ece6d9;
+  --color-bone-soft: #a39b8c;
+  --color-bone-faint: #6b6459;
+
+  --color-brass: #b08d57;
+  --color-brass-bright: #d9b876;
+  --color-brass-deep: #7a5c34;
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-sans: "Archivo", "Helvetica Neue", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --ease-meridian: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --breakpoint-xs: 30rem;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto;
+    background: var(--color-ink);
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-brass);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brass-bright);
+    outline-offset: 3px;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html.custom-cursor,
+  html.custom-cursor a,
+  html.custom-cursor button {
+    cursor: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .hairline {
+    background: var(--color-line);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
